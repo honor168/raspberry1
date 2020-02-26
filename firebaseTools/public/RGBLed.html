@@ -58,10 +58,51 @@
     </div>
 </nav>
     <div class="jumbotron">
-        <h1 class="display-4">客廳燈狀態</h1>
+        <h1 class="display-4">RGB 燈狀態</h1>
         <p class="lead">透過Firebase及時顯示燈狀態 </p>
         <hr class="my-4">
-        <button class="btn  btn-lg state" id="btnState">目前燈狀態:關</button>
+
+<div class="container">
+            <div class="row">
+                <div class="col-10">
+                    <label for="r">紅色(R)</label>
+                    <input type="range" class="custom-range" min="0" max="100" step="10" id="r">
+                </div>
+                <div class="col-2">
+                    2 of 2
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-10">
+                    <label for="g">綠色(G)</label>
+                    <input type="range" class="custom-range" min="0" max="100" step="10" id="g">
+                </div>
+                <div class="col-2">
+                    2 of 3
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-10">
+                    <label for="b">藍色(B)</label>
+                    <input type="range" class="custom-range" min="0" max="100" step="10" id="b">
+                </div>
+                <div class="col-2">
+                    2 of 3
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
     </div>
 </div>
 
@@ -70,12 +111,8 @@
 <script src="/__/firebase/7.9.1/firebase-app.js"></script>
 <script src="/__/firebase/init.js"></script>
 <script src="/__/firebase/7.9.1/firebase-database.js"></script>
-
 <script>
   // Your web app's Firebase configuration
-
-
-
 </script>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -103,11 +140,6 @@
                 $btnState.text('目前燈狀態:關')
             }
         } );
-
-
-        //處理btn的狀態
-
-
          console.log()
     });
 

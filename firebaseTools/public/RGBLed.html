@@ -127,6 +127,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+<script src="/__/firebase/7.9.1/firebase-auth.js"></script>
 <script>
     let $r = $('#r');
     let $g = $('#g');
@@ -148,24 +149,37 @@
             $('#rBadge').text(rValue);
             $('#gBadge').text(gValue);
             $('#bBadge').text(bValue);
-        })
+        });
 
         //range event listener
         $('#displayMessage').change(eventObject => {
             console.log(eventObject.target);
             let targetObject = eventObject.target;
+            let value = $(targetObject).val();
             switch (targetObject.id) {
                 case "r":
                     console.log("r");
                     console.log($(targetObject).val());
+                    rgbRef.update({
+                            "R":Number(value)
+                        });
+                    // $('#rBadge').text(value);
                     break;
                 case "g":
                     console.log("g");
                     console.log($(targetObject).val());
+                    rgbRef.update({
+                            "G":Number(value)
+                        });
+                    // $('#gBadge').text(value);
                     break;
                 case "b":
                     console.log("b");
                     console.log($(targetObject).val());
+                    rgbRef.update({
+                            "B":Number(value)
+                        });
+                    // $('#bBadge').text(value);
                     break;
             }
         });

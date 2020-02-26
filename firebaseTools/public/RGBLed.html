@@ -47,7 +47,7 @@
                     <a class="nav-link" href="ledController.html">客廳主燈開關<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="RGBLed.html">LRGB-Led</a>
+                    <a class="nav-link" href="RGBLed.html">RGB LED</a>
                 </li>
 
                 <li class="nav-item">
@@ -58,7 +58,7 @@
         </div>
     </nav>
     <div class="jumbotron">
-        <h1 class="display-4">RGB 燈狀態</h1>
+        <h1 class="display-4">RGBLED控制室</h1>
         <p class="lead">透過Firebase及時顯示燈狀態 </p>
         <hr class="my-4">
 
@@ -70,7 +70,7 @@
                 </div>
                 <div class="col-3 col-md-4 col-sm-5">
                     <button type="button" class="btn btn-danger">
-                        Red <span class="badge badge-light">4</span>
+                        Red <span class="badge badge-light" id="rBadge">4</span>
                     </button>
                 </div>
             </div>
@@ -82,7 +82,7 @@
                 </div>
                 <div class="col-3 col-md-4 col-sm-5">
                     <button type="button" class="btn btn-success">
-                        Green <span class="badge badge-light">4</span>
+                        Green <span class="badge badge-light"  id="gBadge">4</span>
                     </button>
                 </div>
 
@@ -94,7 +94,7 @@
                     <input type="range" class="custom-range" min="0" max="100" step="10" id="b">
                 </div>
                 <div class="col-3 col-md-4 col-sm-5">
-                    <button type="button" class="btn btn-primary">
+                    <button type="button" class="btn btn-primary" id="bBadge">
                         Blue <span class="badge badge-light">4</span>
                     </button>
                 </div>
@@ -128,12 +128,28 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
 <script>
-
+    let $r = $('#r');
+    let $g = $('#g');
+    let $b = $('#b');
     $(document).ready(function () {
         //realtimeDataBase
         database = firebase.database();
-
         console.log("database ready!")
+        var rgbRef = database.ref("iot20191126/RGBLed");
+        rgbRef.on("value",snapshot => {
+            rgbValue = snapshot.val();
+            let rValue = rgbValue["R"];
+            let gValue = rgbValue["G"];
+            let bValue = rgbValue["B"];
+            console.log("R", rValue, "G", gValue, "B", bValue);
+            $r.val(rValue);
+            $g.val(gValue);
+            $b.val(bValue);
+            $('#rBadge').text(rValue);
+            $('#gBadge').text(gValue);
+            $('#bBadge').text(bValue);
+        })
+
     });
 
 </script>

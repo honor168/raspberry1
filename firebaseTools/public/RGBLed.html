@@ -13,6 +13,7 @@
             font-size: 2em;
             font-family: 微軟正黑體, Arial;
         }
+
         /*
         .container {
             width: 100%;
@@ -27,84 +28,86 @@
         }
 
 
-
     </style>
     <title>LRGB Led燈狀態</title>
 </head>
 <body>
 
-<div class="container root" >
+<div class="container root">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand h1 " href="#">2019Iot物聯網</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+        <a class="navbar-brand h1 " href="#">2019Iot物聯網</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="ledController.html">客廳主燈開關<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="RGBLed.html">LRGB-Led</a>
-            </li>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="ledController.html">客廳主燈開關<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="RGBLed.html">LRGB-Led</a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-        </ul>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
 
-    </div>
-</nav>
+        </div>
+    </nav>
     <div class="jumbotron">
         <h1 class="display-4">RGB 燈狀態</h1>
         <p class="lead">透過Firebase及時顯示燈狀態 </p>
         <hr class="my-4">
 
-<div class="container">
+        <div class="container">
             <div class="row">
-                <div class="col-10">
+                <div class="col-9 col-md-8 col-sm-7">
                     <label for="r">紅色(R)</label>
                     <input type="range" class="custom-range" min="0" max="100" step="10" id="r">
                 </div>
-                <div class="col-2">
-                    2 of 2
+                <div class="col-3 col-md-4 col-sm-5">
+                    <button type="button" class="btn btn-danger">
+                        Red <span class="badge badge-light">4</span>
+                    </button>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-10">
+                <div class="col-9 col-md-8 col-sm-7">
                     <label for="g">綠色(G)</label>
                     <input type="range" class="custom-range" min="0" max="100" step="10" id="g">
                 </div>
-                <div class="col-2">
-                    2 of 3
+                <div class="col-3 col-md-4 col-sm-5">
+                    <button type="button" class="btn btn-success">
+                        Green <span class="badge badge-light">4</span>
+                    </button>
                 </div>
 
             </div>
 
             <div class="row">
-                <div class="col-10">
+                <div class="col-9 col-md-8 col-sm-7">
                     <label for="b">藍色(B)</label>
                     <input type="range" class="custom-range" min="0" max="100" step="10" id="b">
                 </div>
-                <div class="col-2">
-                    2 of 3
+                <div class="col-3 col-md-4 col-sm-5">
+                    <button type="button" class="btn btn-primary">
+                        Blue <span class="badge badge-light">4</span>
+                    </button>
                 </div>
 
             </div>
         </div>
 
 
-
-
-
-
-
-
     </div>
 </div>
+
+</body>
+
 
 <!-- Optional JavaScript -->
 <!--Firebase console-->
@@ -112,7 +115,7 @@
 <script src="/__/firebase/init.js"></script>
 <script src="/__/firebase/7.9.1/firebase-database.js"></script>
 <script>
-  // Your web app's Firebase configuration
+    // Your web app's Firebase configuration
 </script>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -126,23 +129,13 @@
         crossorigin="anonymous"></script>
 <script>
 
-    $(document).ready(function(){
+    $(document).ready(function () {
         //realtimeDataBase
         database = firebase.database();
-        var ledControl = database.ref("iot20191126/ledState");
-        ledControl.on("value",function (snapshot){
-            var $btnState = $("#btnState");
-            if(snapshot.val()){
-                $btnState.removeClass().addClass("btn-success").addClass("btn").addClass("btn-lg").addClass("state");
-                $btnState.text('目前燈狀態:開')
-            }else{
-                $btnState.removeClass().addClass("btn-danger").addClass("btn").addClass("btn-lg").addClass("state");
-                $btnState.text('目前燈狀態:關')
-            }
-        } );
-         console.log()
+
+        console.log("database ready!")
     });
 
 </script>
-</body>
+
 </html>

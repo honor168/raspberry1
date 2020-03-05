@@ -93,22 +93,37 @@
         //realtimeDataBase
         database = firebase.database();
         var ledControl = database.ref("iot20191126/ledState");
+        var ledFlag = false;
+
+        //處理btn的狀態
         ledControl.on("value",function (snapshot){
             var $btnState = $("#btnState");
             if(snapshot.val()){
                 $btnState.removeClass().addClass("btn-success").addClass("btn").addClass("btn-lg").addClass("state");
-                $btnState.text('目前燈狀態:開')
+                $btnState.text('目前燈狀態:開');
+                ledFlag = true;
             }else{
                 $btnState.removeClass().addClass("btn-danger").addClass("btn").addClass("btn-lg").addClass("state");
                 $btnState.text('目前燈狀態:關')
+                ledFlag = false;
             }
         } );
 
 
-        //處理btn的狀態
+        $("#btnState").click(function() {
+            var ledSet = database.ref("iot20191126");
+            if (ledFlag == true) {
+                console.log("false");
+                ledSet.update({ledState: false});
+            } else
+            {
+                ledSet.update({ledState: true});
+                console.log("true");
+        }
+        });
 
 
-         console.log()
+         //console.log()
     });
 
 </script>

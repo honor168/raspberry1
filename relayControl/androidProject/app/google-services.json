@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "916716264493",
+    "firebase_url": "https://eric-firebase-test.firebaseio.com",
+    "project_id": "eric-firebase-test",
+    "storage_bucket": "eric-firebase-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:916716264493:android:48a33a49d22168cb77aca4",
+        "android_client_info": {
+          "package_name": "com.example.lab13_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "916716264493-tqkfia59h7qrfrath3taktkacf7bvdh8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3U7kZsTHOuT5tMxLZBkOZ68HWWb-U8ns"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "916716264493-tqkfia59h7qrfrath3taktkacf7bvdh8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:916716264493:android:3d205594d5b79ca477aca4",
+        "android_client_info": {
+          "package_name": "com.honor168.relaycontrol"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "916716264493-tqkfia59h7qrfrath3taktkacf7bvdh8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3U7kZsTHOuT5tMxLZBkOZ68HWWb-U8ns"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "916716264493-tqkfia59h7qrfrath3taktkacf7bvdh8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

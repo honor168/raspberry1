@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -40,6 +41,21 @@ public class RGBActivity extends AppCompatActivity {
     private SeekBar rSeekBar;
     private SeekBar gSeekBar;
     private SeekBar bSeekBar;
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.sub1:
+                Log.d("optionItem","itemClick");
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
+
     private TextView rTextView;
     private TextView gTextView;
     private TextView bTextView;

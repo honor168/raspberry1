@@ -6,7 +6,15 @@
     android:layout_height="wrap_content"
     android:layout_margin="40dp"
     android:orientation="vertical"
-    tools:context=".RGBActivity">
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="RGB LED: PWM 遠端控制"
+        android:textSize="24sp" />
 
     <SeekBar
         android:id="@+id/redBar"
@@ -14,38 +22,41 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:max="100"
-        android:progress="0"
-        android:progressTint="@color/colorRed" />
+        android:progress="60"
+        android:progressTint="@color/colorRed"
+        android:thumbTint="@color/colorRed" />
 
     <TextView
         android:id="@+id/redTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
         android:layout_weight="1"
-        android:gravity="center"
-        android:text="RED"
-        android:textColor="@color/colorRed"
-        android:textSize="24sp" />
+        android:text="TextView"
+        android:textSize="20sp" />
 
     <SeekBar
         android:id="@+id/greenBar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:layout_weight="1"
         android:max="100"
-        android:progress="0"
-        android:progressTint="@color/colorGreen" />
+        android:progress="60"
+        android:progressTint="@color/colorGreen"
+        android:thumbTint="@color/colorGreen" />
 
     <TextView
         android:id="@+id/greenTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
         android:layout_weight="1"
-        android:gravity="center"
-        android:text="GREEN"
-        android:textColor="@color/colorGreen"
-        android:textSize="24sp" />
+        android:text="TextView"
+        android:textSize="20sp" />
+
 
     <SeekBar
         android:id="@+id/blueBar"
@@ -54,24 +65,27 @@
         android:layout_marginTop="60dp"
         android:layout_weight="1"
         android:max="100"
-        android:progress="0"
-        android:progressTint="@color/colorBlue" />
+        android:progress="60"
+        android:progressTint="@color/colorBlue"
+        android:thumbTint="@color/colorBlue" />
 
     <TextView
         android:id="@+id/blueTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
         android:layout_weight="1"
-        android:gravity="center"
-        android:text="BLUE"
-        android:textColor="@color/colorBlue"
-        android:textSize="24sp" />
+        android:text="TextView"
+        android:textSize="20sp"/>
 
     <Button
         android:id="@+id/button3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="160dp"
         android:layout_weight="1"
-        android:text="Button" />
+        android:onClick="back"
+        android:text="返回前一頁畫面"
+        android:textSize="24sp" />
 </LinearLayout>

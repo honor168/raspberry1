@@ -4,20 +4,32 @@ import mfrc522 as MFRC522
 from tkinter import *
 import sys
 
-my_lcd = lcd()
-my_lcd.display_string("Raspberry Pi", 1)
-my_lcd.display_string("Hello", 2)
-
-
-class App():
-    def __init__(self, window):
-        print('app init')
-
 
 def on_closing():
     print("ctrl+c captured, ending read.")
     GPIO.cleanup()
     sys.exit(0)
+
+
+class App():
+    def __init__(self, window):
+
+        # init lcd
+        self.my_lcd = lcd()
+
+        # init Rfid
+        self.MIFAREReader = MFRC522.MFRC522()
+        self.rfidHandler()
+
+    def rfidHandler(self):
+        (status, TagType) = self.MIFAREReader.MFRC522_Request(self.MIFAREReader.PICC_REQIDL)
+        if status == self.MIFAREReader.MI_OK:
+            print("status success")
+            self.my_lcd.display_string("status success", 1)
+            self.my_lcd.display_string("..........", 2)
+        else:
+            self.my_lcd.display_string("Put On Card", 1)
+            self.my_lcd.display_string("..........", 2)
 
 
 if __name__ == "__main__":

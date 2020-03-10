@@ -21,7 +21,7 @@ class App():
     def __init__(self, window):
         # init fireStore
         cred = credentials.Certificate(
-            '/home/pi/Documents/certificate/raspberryfirebase-firebase-adminsdk-y4f0x-cf4be2ca1a.json')
+            '/home/pi/Documents/iotProject/eric-firebase-test-firebase-adminsdk-4bs2b-9871f102be.json')
         firebase_admin.initialize_app(cred)
         self.firestore = firestore.client()
 

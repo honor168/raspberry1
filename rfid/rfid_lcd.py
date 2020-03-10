@@ -19,17 +19,26 @@ class App():
 
         # init Rfid
         self.MIFAREReader = MFRC522.MFRC522()
-        self.rfidHandler()
+        self.rfidStatusHandler()
 
-    def rfidHandler(self):
+    def rfidStatusHandler(self):
         (status, TagType) = self.MIFAREReader.MFRC522_Request(self.MIFAREReader.PICC_REQIDL)
         if status == self.MIFAREReader.MI_OK:
             print("status success")
             self.my_lcd.display_string("status success", 1)
             self.my_lcd.display_string("..........", 2)
+            self.cardRuning()
         else:
             self.my_lcd.display_string("Put On Card", 1)
             self.my_lcd.display_string("..........", 2)
+
+    def cardRuning(self):
+        (status, uid) = self.MIFAREReader.MFRC522_Anticoll()
+        if status == self.MIFAREReader.MI_OK:
+            for itemId in uid:
+                print("{:x}".format(itemId), end=' ')
+                self.my_lcd.display_string("Card ID", 1)
+                self.my_lcd.display_string("{:x}".format(itemId), 2)
 
 
 if __name__ == "__main__":

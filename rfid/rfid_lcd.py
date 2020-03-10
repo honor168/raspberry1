@@ -18,6 +18,7 @@ class App():
         self.my_lcd = lcd()
 
         # init Rfid
+        self.previousUid = []
         self.MIFAREReader = MFRC522.MFRC522()
         self.rfidStatusHandler()
 
@@ -33,12 +34,16 @@ class App():
             self.my_lcd.display_string("..........", 2)
 
     def cardRuning(self):
-        (status, uid) = self.MIFAREReader.MFRC522_Anticoll()
-        if status == self.MIFAREReader.MI_OK:
-            for itemId in uid:
-                print("{:x}".format(itemId), end=' ')
-                self.my_lcd.display_string("Card ID", 1)
-                self.my_lcd.display_string("{:x}".format(itemId), 2)
+        (status, currentUid) = self.MIFAREReader.MFRC522_Anticoll()
+        if status == self.MIFAREReader.MI_OK and set(currentUid) != set(self.previousUid):
+            self.previousUid = currentUid
+            cardCode = ""
+            for singleId in currentUid:
+                cardCode += "{:x}.".format(singleId)
+
+            self.my_lcd.display_string("Card ID:", 1)
+            self.my_lcd.display_string(cardCode.upper(), 2)
+            print(cardCode)
 
 
 if __name__ == "__main__":

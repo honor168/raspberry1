@@ -3,6 +3,7 @@ import RPi.GPIO as GPIO
 import mfrc522 as MFRC522
 from tkinter import *
 import sys
+import threading
 
 
 def on_closing():
@@ -32,6 +33,8 @@ class App():
         else:
             self.my_lcd.display_string("Put On Card", 1)
             self.my_lcd.display_string("..........", 2)
+
+        threading.Timer(3, self.rfidStatusHandler).start()
 
     def cardRuning(self):
         (status, currentUid) = self.MIFAREReader.MFRC522_Anticoll()

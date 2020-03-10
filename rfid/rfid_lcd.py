@@ -4,6 +4,11 @@ import mfrc522 as MFRC522
 from tkinter import *
 import sys
 import threading
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
+import time
+import datetime
 
 
 def on_closing():
@@ -14,6 +19,11 @@ def on_closing():
 
 class App():
     def __init__(self, window):
+        # init fireStore
+        cred = credentials.Certificate(
+            '/home/pi/Documents/certificate/raspberryfirebase-firebase-adminsdk-y4f0x-cf4be2ca1a.json')
+        firebase_admin.initialize_app(cred)
+        self.firestore = firestore.client()
 
         # init lcd
         self.my_lcd = lcd()
@@ -47,6 +57,19 @@ class App():
             self.my_lcd.display_string("Card ID:", 1)
             self.my_lcd.display_string(cardCode.upper(), 2)
             print(cardCode)
+            self.saveToFireStore(cardCode)
+
+    def saveToFireStore(self, cardCode):
+        doc_ref = self.firestore.collection('Doors').document()
+        currentTime = time.time()
+        timestamp = datetime.datetime.fromtimestamp(currentTime)
+        date = timestamp.strftime("%Y-%m-%d-%H-%M-%S")
+        print(date)
+        doc_ref.set({
+            'timestamp': timestamp,
+            'cardID': cardCode,
+            'date': date
+        })
 
 
 if __name__ == "__main__":
@@ -54,5 +77,5 @@ if __name__ == "__main__":
     root = Tk()
     root.title("RFID_LCD")
     root.protocol("WM_DELETE_WINDOW", on_closing)
-    app = App(root);
-    root.mainloop();
+    app = App(root)
+    root.mainloop()

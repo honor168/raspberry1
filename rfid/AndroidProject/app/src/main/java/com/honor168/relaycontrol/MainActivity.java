@@ -18,16 +18,19 @@ import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 //public class MainActivity extends AppCompatActivity {
 public class MainActivity extends ListActivity {
     private FirebaseAuth mAuth;     //
     FirebaseFirestore firestore = FirebaseFirestore.getInstance();  //2
-    String[] names; //ListView
+    //String[] names; //ListView
+    ArrayList<String> names = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,31 +38,45 @@ public class MainActivity extends ListActivity {
         mAuth = FirebaseAuth.getInstance(); //
 
         //getResource
+        /*
         Resources res = getResources();
         names = res.getStringArray(R.array.userName);
-        /*
+
         ArrayList<String> names = new ArrayList<String>();
         names.add("Robert");
         names.add("John");
         names.add("Tom");
         names.add("Alice");
         */
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, names);
-        setListAdapter(adapter);
-        /*
-        firestore.collection("Doors").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() { //2
+
+
+        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, names);
+        //setListAdapter(adapter);
+
+        //firestore.collection("Doors").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() { //2
+        //firestore get 30 pieces data
+        Query doorRef = firestore.collection("Doors").orderBy("timestamp", Query.Direction.ASCENDING).limit(30);
+        doorRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
                     for (QueryDocumentSnapshot document : task.getResult()) {
-                        Log.d("Firestore", document.getId() + " => " + document.getData());
+                        //Log.d("Firestore", document.getId() + " => " + document.getData());
+                        //Record record = document.toObject(Record.class);
+                        //records.add(record);
+                        Map<String, Object> oneItem = document.getData();
+                        //Log.d("Firestore",String.valueOf(oneItem.get("cardID")));
+                        names.add(String.valueOf(oneItem.get("cardID")));
                     }
+
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_list_item_1, names);
+                    setListAdapter(adapter);
                 }else{
                     Log.d("Firestore", "firestore read fails");
                 }
             }
         });
-        */
+
 
         firestore.collection("Doors").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override

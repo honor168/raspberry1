@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ListActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -18,15 +20,27 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+//public class MainActivity extends AppCompatActivity {
+public class MainActivity extends ListActivity {
     private FirebaseAuth mAuth;     //
     FirebaseFirestore firestore = FirebaseFirestore.getInstance();  //2
+    String[] names; //ListView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        //setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance(); //
 
+
+        ArrayList<String> names = new ArrayList<String>();
+        names.add("Robert");
+        names.add("John");
+        names.add("Tom");
+        names.add("Alice");
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, names);
+        setListAdapter(adapter);
         /*
         firestore.collection("Doors").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() { //2
             @Override

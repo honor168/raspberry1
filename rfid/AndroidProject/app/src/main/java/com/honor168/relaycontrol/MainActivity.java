@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ListActivity;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
@@ -33,12 +34,16 @@ public class MainActivity extends ListActivity {
         //setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance(); //
 
-
+        //getResource
+        Resources res = getResources();
+        names = res.getStringArray(R.array.userName);
+        /*
         ArrayList<String> names = new ArrayList<String>();
         names.add("Robert");
         names.add("John");
         names.add("Tom");
         names.add("Alice");
+        */
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, names);
         setListAdapter(adapter);
         /*
